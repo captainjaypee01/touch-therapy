@@ -42,6 +42,7 @@ Route::group([
             Route::get('/', [ReservationController::class, 'show'])->name('show');
             Route::get('/edit', [ReservationController::class, 'edit'])->name('edit'); 
             Route::get('mark/{status}', [ReservationController::class, 'mark'])->name('mark')->where(['status' => '[0,1]']); 
+            Route::post('approve/', [ReservationController::class, 'approve'])->name('approve'); 
             Route::patch('/', [ReservationController::class, 'update'])->name('update');
             Route::delete('/', [ReservationController::class, 'destroy'])->name('destroy');
         });

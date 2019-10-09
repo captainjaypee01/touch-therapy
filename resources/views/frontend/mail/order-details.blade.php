@@ -3,9 +3,9 @@
 @section("content")
 
 	<h1 style="font-size: 18px; font-weight: 300;">Hi {{ $user->first_name . ' ' . $user->last_name }}!</h1>
-	<h3 style="font-size: 18px; font-weight: 300;">Welcome to Ortiz Skin Clinic </h3>
+	<h3 style="font-size: 18px; font-weight: 300;">Welcome to  C1S Touch Therapy </h3>
 
-	<p style="font-size: 14px; font-weight: 300;">Thank you for ordering our products in Ortiz Skin Clinic.</p>
+	<p style="font-size: 14px; font-weight: 300;">Thank you for ordering our products in  C1S Touch Therapy.</p>
 	<p style="font-size: 14px; font-weight: 300;">Here's your Order Details</p>
  
     <p style="font-size: 14px; font-weight: 300;">Reference Number : {{ $order->reference_number }}</p>

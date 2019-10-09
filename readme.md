@@ -1,2 +1,2 @@
-# ortiz-clinic
-Online Dermatological Management and Inventory System with Recommender for Ortiz Dermatological Clinic
+# touch-therapy
+A Reservation System for Touch Therapy

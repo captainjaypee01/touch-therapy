@@ -12,8 +12,7 @@
                 </h4>
             </div><!--col-->
 
-            <div class="col-sm-7">
-                @include('backend.transaction.reservation.includes.header-buttons')
+            <div class="col-sm-7"> 
             </div><!--col-->
         </div><!--row-->
 

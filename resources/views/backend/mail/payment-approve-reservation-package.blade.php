@@ -1,19 +1,20 @@
-@extends("frontend.mail.template")
+@extends("backend.mail.template")
 
 @section("content")
 
 	<h1 style="font-size: 18px; font-weight: 300;">Hi {{ $user->first_name . ' ' . $user->last_name }}!</h1>
 	<h3 style="font-size: 18px; font-weight: 300;">Welcome to C1S Touch Therapy </h3>
 
-	<p style="font-size: 14px; font-weight: 300;">Thank you for booking our services in C1S Touch Therapy.</p>
-	<p style="font-size: 14px; font-weight: 300;">Here's your Details</p>
- 
-    <p style="font-size: 14px; font-weight: 300;">Reference Number : {{ $reservation->reference_number }}</p>
-    <p style="font-size: 14px; font-weight: 300;">Service Name : {{ $service->name }}</p>
-    <p style="font-size: 14px; font-weight: 300;">Service Price : {{ $service->format_price }}</p>
-    <p style="font-size: 14px; font-weight: 300;">Reservation Date : {{ $reservation->reservation_date }}</p>
-    <p style="font-size: 14px; font-weight: 300;">Reservation Time : {{ $reservation->reservation_time }}</p>
+	<p style="font-size: 14px; font-weight: 300;">We have already 
+		@if($reservation->payment_status == 1)
+		<strong style="color:#5cb85c">APPROVED</strong> your uploaded payment in our system. 
+		@else
+		<strong style="color:#c9302c">REJECTED</strong> your uploaded payment in our system. Please Reupload your payment to verify once again. 
+		@endif
 
+		 Thank you!
+	
+	</p>
 	
 	<a href="{{ route('frontend.auth.login') }}" style="font-size: 12px; background: #1e87f0; border: 1px solid transparent; margin: 0; border: none; overflow: visible;color: white; text-transform: none; display: inline-block; box-sizing: border-box; padding: 0 30px; vertical-align: middle; line-height: 38px; text-align: center; text-decoration: none; text-transform: uppercase; -webkit-transition: .1s ease-in-out; transition: .1s ease-in-out; -webkit-transition-property: color,background-color,border-color; transition-property: color,background-color,border-color; margin-top: 20px; border-radius: 3px;">Go To C1S Touch Therapy</a>
 	

@@ -3,7 +3,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">
-        Ortiz Clinic
+        C1S Touch Therapy
         
     </a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">

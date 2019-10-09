@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Backend\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\Frontend\Transaction\ReservationMail;
+use App\Mail\Backend\Transaction\ReservationPaymentMail;
+use App\Mail\Backend\Transaction\ReservationPackagePaymentMail;
 use App\Models\Auth\User;
 use App\Models\Record\Branch;
 use App\Models\Record\Service;
+use App\Models\Record\Package;
 use App\Models\Transaction\Reservation;
 use Log;
 use Mail;
@@ -51,7 +54,8 @@ class ReservationController extends Controller
             [ 
                 "reservation" => $reservation,  
             ])
-            ->withService($reservation->service);
+            ->withService($reservation->service)
+            ->withPackage($reservation->package);
     }
 
     public function edit(Reservation $reservation){
@@ -97,8 +101,7 @@ class ReservationController extends Controller
         $user = User::find($reservation->user_id); 
         $service = Service::find(request('service'));
         
-        $reservation->total_amount = $service->price;
-        $reservation->branch_id = request('branch');
+        $reservation->total_amount = $service->price; 
         $reservation->service_id = $service->id;
         $reservation->reservation_date = request('reservation_date');
         $reservation->start_time = request('reservation_time'); 
@@ -117,6 +120,23 @@ class ReservationController extends Controller
         $reservation->status = $status;
         $reservation->save();
         return redirect()->route('admin.transaction.reservation.index')->withFlashSuccess("Reservation Status Saved");
+    }
+
+    public function approve(Reservation $reservation){
+        $user = User::find($reservation->user_id);
+        
+        $reservation->payment_status = 1;
+        $reservation->save();
+        if($reservation->service_id && $reservation->service_id > 0){
+            $service = Service::find($reservation->service_id);
+            Mail::to($user->email)->send(new ReservationPaymentMail($user, $service, $reservation));
+        }
+        elseif($reservation->package_id && $reservation->package_id > 0){ 
+            $package = Package::find($reservation->package_id);
+            Mail::to($user->email)->send(new ReservationPackagePaymentMail($user, $package, $reservation));
+        }
+
+        return redirect()->route('admin.transaction.reservation.show', $reservation)->withFlashSuccess("Reservation Status Saved and Email Successfully Sent");
     }
 
     function generate_string($strength = 20) {

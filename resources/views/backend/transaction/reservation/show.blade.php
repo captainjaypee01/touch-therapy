@@ -20,18 +20,37 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-expanded="true"><i class="fas fa-poll-h"></i> @lang('labels.backend.access.users.tabs.titles.overview')</a>
                     </li>
+                    
+                    @if($reservation->service_id && $reservation->service_id > 0)
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#service" role="tab" aria-controls="service" aria-expanded="true"><i class="fas fa-list-alt"></i> Service</a>
-                    </li>
+                    </li> 
+                    @elseif($reservation->package_id && $reservation->package_id > 0)
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#package" role="tab" aria-controls="package" aria-expanded="true"><i class="fas fa-list-alt"></i> Package</a>
+                    </li> 
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-expanded="true"><i class="fas fa-list-alt"></i> Payment</a>
+                    </li> 
                 </ul>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="overview" role="tabpanel" aria-expanded="true">
                         @include('backend.transaction.reservation.show.tabs.overview')
                     </div><!--tab-->
+                    
+                    @if($reservation->service_id && $reservation->service_id > 0)
                     <div class="tab-pane" id="service" role="tabpanel" aria-expanded="true">
                         @include('backend.transaction.reservation.show.tabs.service')
-
+                    </div><!--tab-->
+                    @elseif($reservation->package_id && $reservation->package_id > 0)
+                    <div class="tab-pane" id="package" role="tabpanel" aria-expanded="true">
+                        @include('backend.transaction.reservation.show.tabs.package')
+                    </div><!--tab-->
+                    @endif
+                    <div class="tab-pane" id="payment" role="tabpanel" aria-expanded="true">
+                        @include('backend.transaction.reservation.show.tabs.payment')
                     </div><!--tab-->
                 </div><!--tab-content-->
             </div><!--col-->

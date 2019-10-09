@@ -43,7 +43,7 @@
                 </a>
             </li>
 
-            <!-- <li class="nav-title">
+            <li class="nav-title">
                 Production
             </li>
 
@@ -63,7 +63,7 @@
                     <i class="nav-icon fas fa-capsules"></i>
                     Product
                 </a>
-            </li> -->
+            </li>
             <li class="nav-title">
                 Transaction
             </li>
@@ -77,14 +77,14 @@
                 </a>
             </li>
 
-            <!-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link {{
                     active_class(Active::checkUriPattern('admin/transaction/order'))
                 }}" href="{{ route('admin.transaction.order.index') }}">
                     <i class="nav-icon fas fa-shopping-cart"></i>
                     Orders
                 </a>
-            </li> -->
+            </li>
 
 
             <li class="nav-title">
